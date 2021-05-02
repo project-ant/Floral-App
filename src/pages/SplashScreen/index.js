@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 export default function SplashScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Arter Tendean</Text>
+      <Text style={styles.text}>Floral-App</Text>
       <Image
         style={styles.image}
         source={require("../../assets/icons/Logo.png")}
@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: "#020202",
     fontWeight: "500",
+    fontFamily: "Poppins-Medium",
   },
 });
