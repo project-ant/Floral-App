@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 import { View, StatusBar, StyleSheet } from "react-native";
 
-import { Button, Gap } from "../../components/atoms";
+import { Button, Gap, TextInput } from "../../components/atoms";
 import { Header } from "../../components/molecules";
 
 const SignIn = ({ navigation }) => {
   StatusBar.setBarStyle("dark-content");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginHandler = () => {
+    console.log("login handler");
+    console.log(email, password);
+  };
+
   return (
     <View style={styles.page}>
       <Header label="Sign In" bgColor="#FFC700" />
-      {/* <Gap height={25} />
+      <Gap height={25} />
       <View style={styles.signInCard}>
-        <LabeledInput
+        <TextInput
           value={email}
           setValue={setEmail}
-          validation={emailValidationHandler}
+          // validation={emailValidationHandler}
           placeholder="Type your email address"
           label="Email Address"
         />
         <Gap height={16} />
-        <LabeledInput
+        <TextInput
           value={password}
           setValue={setPassword}
           placeholder="Type your password"
@@ -39,7 +45,7 @@ const SignIn = ({ navigation }) => {
             onPress={() => navigation.navigate("SignUp")}
           />
         </View>
-      </View> */}
+      </View>
     </View>
   );
 };
