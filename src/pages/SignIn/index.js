@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, StatusBar, StyleSheet } from "react-native";
+
 import { Button, Gap } from "../../components/atoms";
+import { Header } from "../../components/molecules";
 
 const SignIn = ({ navigation }) => {
   StatusBar.setBarStyle("dark-content");
@@ -9,7 +11,7 @@ const SignIn = ({ navigation }) => {
   return (
     <View style={styles.page}>
       <Header label="Sign In" bgColor="#FFC700" />
-      <Gap height={25} />
+      {/* <Gap height={25} />
       <View style={styles.signInCard}>
         <LabeledInput
           value={email}
@@ -37,7 +39,7 @@ const SignIn = ({ navigation }) => {
             onPress={() => navigation.navigate("SignUp")}
           />
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };
