@@ -1,21 +1,50 @@
-import React, { useState } from "react";
-import { View, StatusBar, StyleSheet } from "react-native";
+import React, {useState} from 'react';
+import {
+  View,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 
-import { Button, Gap, TextInput } from "../../components/atoms";
-import { Header } from "../../components/molecules";
+import {Button, Gap, TextInput} from '../../components/atoms';
+import {Header} from '../../components/molecules';
+import firebase from '../../config/Firebase';
 
-const SignIn = ({ navigation }) => {
-  StatusBar.setBarStyle("dark-content");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SignIn = ({navigation}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const loginHandler = () => {
-    console.log("login handler");
-    console.log(email, password);
+    // set loading for button
+    setIsLoading(true);
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        console.log(user.uid);
+        setIsLoading(false);
+        navigation.replace('Home');
+      })
+      .catch(error => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+
+        showMessage({
+          message: errorMessage,
+          type: 'danger',
+        });
+
+        setIsLoading(false);
+      });
   };
 
   return (
-    <View style={styles.page}>
+    <ScrollView style={styles.page}>
       <Header label="Sign In" bgColor="#FFC700" />
       <Gap height={25} />
       <View style={styles.signInCard}>
@@ -34,32 +63,38 @@ const SignIn = ({ navigation }) => {
           secureTextEntry={true}
         />
         <Gap height={24} />
-        <Button text="Sign In" onPress={loginHandler} />
+        {isLoading && (
+          <Button
+            text=<Button text="Sign In" onPress={loginHandler} />
+            onPress={loginHandler}
+          />
+        )}
+        {!isLoading && <Button text="Sign In" onPress={loginHandler} />}
         <Gap height={12} />
         <Button
           text="Create New Account"
           color="#8D92A3"
           textColor="#FFFFFF"
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={() => navigation.navigate('SignUp')}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#FAFAFC",
+    backgroundColor: '#FAFAFC',
     flex: 1,
   },
   signInCard: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     flex: 1,
     padding: 25,
   },
   text: {
     fontSize: 16,
-    fontFamily: "Arial-Regular",
+    fontFamily: 'Arial-Regular',
   },
 });
 
