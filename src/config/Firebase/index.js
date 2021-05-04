@@ -9,7 +9,18 @@ var firebaseConfig = {
   appId: '1:23457594764:web:dc41f10f1c681944c0eaa9',
   measurementId: 'G-NWVXSRKRL6',
 };
-// Initialize Firebase
+
+// arter tendean - untuk testing pribadi
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyBbpct0hIaeZGS7WR1m48T8IKnoVp_kY1M',
+//   authDomain: 'moneytracker-9473e.firebaseapp.com',
+//   databaseURL: 'https://moneytracker-9473e-default-rtdb.firebaseio.com',
+//   projectId: 'moneytracker-9473e',
+//   storageBucket: 'moneytracker-9473e.appspot.com',
+//   messagingSenderId: '261335311170',
+//   appId: '1:261335311170:web:30287c5c320f93c429dedb',
+// };
+
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
