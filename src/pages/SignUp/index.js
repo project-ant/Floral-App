@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 import { Header } from "../../components/molecules/";
 import { TextInput, Gap, Button } from "../../components/atoms";
@@ -15,7 +22,7 @@ function SignUp({ navigation }) {
   };
 
   return (
-    <View>
+    <ScrollView>
       <Header
         label="Sign Up"
         bgColor="#FFC700"
@@ -23,6 +30,28 @@ function SignUp({ navigation }) {
       />
 
       <View style={styles.signUpWrapper}>
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <View
+            style={{
+              borderColor: "red",
+              borderWidth: 2,
+              height: 100,
+              width: 100,
+              borderRadius: 100,
+              borderColor: "#c4c4c4",
+              borderWidth: 2,
+              padding: 3,
+              borderStyle: "dashed",
+            }}
+          >
+            <TouchableOpacity style={styles.imageWrapper} activeOpacity={0.7}>
+              <Text style={styles.imageWrapperText}>Add Photo</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <TextInput
           label="Full Name"
           placeholder="Type your full name"
@@ -52,7 +81,7 @@ function SignUp({ navigation }) {
           onPress={handleSignUp}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -62,5 +91,19 @@ const styles = StyleSheet.create({
   signUpWrapper: {
     paddingHorizontal: 24,
     marginTop: 24,
+  },
+  imageWrapper: {
+    width: 90,
+    height: 90,
+    borderRadius: 90,
+    backgroundColor: "#c4c4c4",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  imageWrapperText: {
+    color: "black",
+    width: 50,
+    textAlign: "center",
   },
 });
