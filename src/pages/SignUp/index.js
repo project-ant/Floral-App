@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,19 +6,26 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 
-import { Header } from "../../components/molecules/";
-import { TextInput, Gap, Button } from "../../components/atoms";
+import {Header} from '../../components/molecules/';
+import {TextInput, Gap, Button} from '../../components/atoms';
 
-function SignUp({ navigation }) {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function SignUp({navigation}) {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignUp = () => {
-    console.log("signup");
+    console.log('signup');
     console.log(fullName, email, password);
+  };
+
+  const handleImage = () => {
+    launchImageLibrary({}, response => {
+      console.log(response);
+    });
   };
 
   return (
@@ -30,23 +37,22 @@ function SignUp({ navigation }) {
       />
 
       <View style={styles.signUpWrapper}>
-        <View
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <View
             style={{
-              borderColor: "red",
+              borderColor: 'red',
               borderWidth: 2,
               height: 100,
               width: 100,
               borderRadius: 100,
-              borderColor: "#c4c4c4",
-              borderWidth: 2,
+              borderColor: '#c4c4c4',
               padding: 3,
-              borderStyle: "dashed",
-            }}
-          >
-            <TouchableOpacity style={styles.imageWrapper} activeOpacity={0.7}>
+              borderStyle: 'dashed',
+            }}>
+            <TouchableOpacity
+              style={styles.imageWrapper}
+              activeOpacity={0.7}
+              onPress={handleImage}>
               <Text style={styles.imageWrapperText}>Add Photo</Text>
             </TouchableOpacity>
           </View>
@@ -96,14 +102,14 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 90,
-    backgroundColor: "#c4c4c4",
+    backgroundColor: '#c4c4c4',
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   imageWrapperText: {
-    color: "black",
+    color: 'black',
     width: 50,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
