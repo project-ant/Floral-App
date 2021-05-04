@@ -21,30 +21,27 @@ const SignIn = ({ navigation }) => {
       <View style={styles.signInCard}>
         <TextInput
           value={email}
-          setValue={setEmail}
-          // validation={emailValidationHandler}
+          onChangeText={setEmail}
           placeholder="Type your email address"
           label="Email Address"
         />
         <Gap height={16} />
         <TextInput
           value={password}
-          setValue={setPassword}
+          onChangeText={setPassword}
           placeholder="Type your password"
           label="Password"
-          isPassword
+          secureTextEntry={true}
         />
         <Gap height={24} />
-        <View style={{ height: 112 }}>
-          <Button label="Sign In" bgColor="#FFC700" onPress={loginHandler} />
-          <Gap height={12} />
-          <Button
-            label="Create New Account"
-            bgColor="#8D92A3"
-            textColor="white"
-            onPress={() => navigation.navigate("SignUp")}
-          />
-        </View>
+        <Button text="Sign In" onPress={loginHandler} />
+        <Gap height={12} />
+        <Button
+          text="Create New Account"
+          color="#8D92A3"
+          textColor="#FFFFFF"
+          onPress={() => navigation.navigate("SignUp")}
+        />
       </View>
     </View>
   );

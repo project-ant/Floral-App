@@ -12,9 +12,9 @@ function Header(props) {
             style={styles.image}
             source={require("../../../assets/icons/Back.png")}
           />
+          <Gap width={32} />
         </TouchableOpacity>
       )}
-      <Gap width={32} />
       <Text style={styles.text}>{props.label}</Text>
     </View>
   );
