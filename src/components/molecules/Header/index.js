@@ -1,14 +1,17 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import { Gap } from "../../atoms";
 
 function Header(props) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container(props.bgColor)}>
       {props.onBack && (
         <TouchableOpacity onPress={props.onBack}>
-          <IconBack />
+          <Image
+            style={styles.image}
+            source={require("../../../assets/icons/Back.png")}
+          />
         </TouchableOpacity>
       )}
       <Gap width={32} />
@@ -18,16 +21,17 @@ function Header(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: bgColor => ({
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: 24,
     paddingVertical: 37,
-    backgroundColor: "white",
-  },
+    backgroundColor: bgColor,
+  }),
   text: {
     fontFamily: "Poppins-Medium",
     fontSize: 22,
+    color: "#020202",
   },
 });
 
