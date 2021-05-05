@@ -1,69 +1,32 @@
-import React, { useRef } from 'react'
-import { Text, Animated, TouchableOpacity, StyleSheet } from 'react-native'
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Button = ({label, bgColor, textColor, onPress, isDisabled}) => {
-    const buttonSizeAnim = useRef(new Animated.Value(90)).current
-
-    const buttonClickHandler = () => {
-        if(!isDisabled)
-            Animated.sequence([
-                Animated.timing(buttonSizeAnim, {
-                    toValue: 80,
-                    duration: 50,
-                    useNativeDriver: false
-                }),
-                Animated.timing(buttonSizeAnim, {
-                    toValue: 100,
-                    duration: 80,
-                    useNativeDriver: false
-                }),
-                Animated.timing(buttonSizeAnim, {
-                    toValue: 90,
-                    duration: 100,
-                    useNativeDriver: false
-                }),
-            ]).start(
-                ({finished}) =>
-                    finished &&
-                    onPress &&
-                    onPress()
-            )
-    }
-
-    return (
-        <TouchableOpacity   style={styles.buttonContainer}
-                            onPress={buttonClickHandler}
-                            activeOpacity={1}>
-            <Animated.View  style={{
-                                ...styles.buttonStyle,
-                                width: buttonSizeAnim.interpolate({
-                                    inputRange: [0, 100],
-                                    outputRange: ['60%', '100%']
-                                }),
-                                height: buttonSizeAnim.interpolate({
-                                    inputRange: [0, 100],
-                                    outputRange: ['0%', '100%']
-                                }),
-                                backgroundColor: isDisabled ? 'hsla(0, 0%, 0%, 0.15)' : bgColor
-                            }}>
-                <Text   style={{color: textColor, fontFamily: 'Poppins-Medium'}}>{label}</Text>
-            </Animated.View>
-        </TouchableOpacity>
-    )
+function Button({ text, color = "#FFC700", textColor = "#020202", onPress }) {
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <View style={styles.container(color)}>
+        <Text style={styles.text(textColor)}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonStyle: {
-        borderRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 12,
-    },
-})
+  container: color => ({
+    backgroundColor: color,
+    height: 45,
+    // flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+  }),
 
-export default Button
+  text: textColor => ({
+    fontFamily: "Poppins-Medium",
+    fontWeight: "500",
+    fontSize: 14,
+    color: textColor,
+  }),
+});
+
+export default Button;
