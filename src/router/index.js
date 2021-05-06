@@ -9,7 +9,7 @@ export default function Router() {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="SplashScreen"
         component={SplashScreen}
         options={{headerShown: false}}
@@ -23,7 +23,7 @@ export default function Router() {
         name="SignUp"
         component={SignUp}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="Home"
         component={Home}
