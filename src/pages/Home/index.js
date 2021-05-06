@@ -1,50 +1,50 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {HeaderUser} from '../../components/molecules';
-import {SignIn, SignUp} from '../../pages';
+import {Buy} from '../../pages';
 
 const Tab = createMaterialBottomTabNavigator();
 
 function Home() {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Home"
       activeColor="#e91e63"
-      barStyle={{backgroundColor: 'tomato'}}>
+      barStyle={{backgroundColor: '#FFC700'}}>
       <Tab.Screen
-        name="Feed"
-        component={SignIn}
+        name="Home"
+        component={HomeContent}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: '',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <Image source={require('../../assets/icons/Home.png')} />
           ),
         }}
       />
       <Tab.Screen
-        name="Notifications"
-        component={SignUp}
+        name="Buy"
+        component={Buy}
         options={{
-          tabBarLabel: 'Updates',
+          tabBarLabel: '',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="bell" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={SignIn}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <Image source={require('../../assets/icons/Buy.png')} />
           ),
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+function HomeContent() {
+  return (
+    <View>
+      <HeaderUser />
+      <Text>Dummy Home Page</Text>
+    </View>
   );
 }
 
