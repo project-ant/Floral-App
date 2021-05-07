@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, ScrollView, Text, Image, StyleSheet} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import {HeaderUser} from '../../components/molecules';
+import {HeaderUser, Card} from '../../components/molecules';
 import {Buy} from '../../pages';
 import firebase from '../../config/Firebase';
 
@@ -55,11 +55,34 @@ function HomeContent(user) {
   user = user.user;
 
   return (
-    <View>
+    <ScrollView style={{flex: 1}}>
       <HeaderUser image={user.imageBase64} />
-      <Text>Dummy Home Page</Text>
-    </View>
+
+      <View style={styles.contentWrapper}>
+        <Card />
+        <Card />
+      </View>
+
+      <View style={styles.contentWrapper}>
+        <Card />
+        <Card />
+      </View>
+
+      <View style={styles.contentWrapper}>
+        <Card />
+        <Card />
+      </View>
+    </ScrollView>
   );
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+  contentWrapper: {
+    flex: 2,
+    flexDirection: 'row',
+    // backgroundColor: 'teal',
+    padding: 5,
+  },
+});
