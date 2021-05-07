@@ -1,15 +1,26 @@
-import React from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Image} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {HeaderUser} from '../../components/molecules';
 import {Buy} from '../../pages';
+import firebase from '../../config/Firebase';
 
 const Tab = createMaterialBottomTabNavigator();
 
-function Home() {
+function Home(props) {
+  const {id} = props.route.params;
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    var starCountRef = firebase.database().ref('users/' + id);
+    starCountRef.on('value', snapshot => {
+      const data = snapshot.val();
+      setUser(data);
+    });
+  }, []);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -17,7 +28,8 @@ function Home() {
       barStyle={{backgroundColor: '#FFC700'}}>
       <Tab.Screen
         name="Home"
-        component={HomeContent}
+        // component={HomeContent}
+        children={() => <HomeContent user={user} />}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({color}) => (
@@ -39,10 +51,12 @@ function Home() {
   );
 }
 
-function HomeContent() {
+function HomeContent(user) {
+  user = user.user;
+
   return (
     <View>
-      <HeaderUser />
+      <HeaderUser image={user.imageBase64} />
       <Text>Dummy Home Page</Text>
     </View>
   );
