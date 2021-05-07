@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 function Card() {
-  const handleCLick = () => {
+  const handleClick = () => {
     console.log('jalan');
   };
 
@@ -13,15 +13,14 @@ function Card() {
         alignItems: 'center',
         borderRadius: 2,
         borderColor: 'black',
-        borderWidth: 0.3,
+        borderWidth: 0.5,
         backgroundColor: 'white',
         margin: 10,
-        paddingBottom: 4,
         flex: 1,
       }}>
       <Image
         source={require('../../../assets/images/dummy.jpg')}
-        style={{width: 179, height: 179, margin: 0}}
+        style={{borderRadius: 3, width: '100%', height: '75%'}}
       />
       <Text style={{fontFamily: 'Poppins-Medium', fontSize: 17}}>
         Bunga Angrek
@@ -32,35 +31,18 @@ function Card() {
 
       <View
         style={{
-          width: '100%',
-          padding: 0,
-          flex: 2,
-          flexDirection: 'row',
-          height: 20,
+          position: 'absolute',
+          right: 0,
+          bottom: 0,
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
-        <View
-          style={{
-            width: '80%',
-          }}></View>
-        <View
-          style={{
-            width: '20%',
-            backgroundColor: 'white',
-          }}>
-          <TouchableOpacity onPress={handleCLick}>
-            <Text
-              style={{
-                borderColor: 'black',
-                borderWidth: 3,
-                borderRadius: 5,
-                textAlign: 'center',
-                marginRight: 5,
-                fontWeight: '500',
-              }}>
-              +
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={handleClick}>
+          <Image
+            source={require('../../../assets/icons/add.png')}
+            style={{width: 20, height: 20, margin: 4}}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
