@@ -30,7 +30,6 @@ function Home(props) {
         return productArray.push({id: i, ...data[i]});
       });
       setFlowers(productArray);
-      // setFlowers(Object.entries(data).map(([key, value]) => ({key, value})));
     });
   }, []);
 
@@ -42,7 +41,13 @@ function Home(props) {
       <Tab.Screen
         name="Home"
         // component={HomeContent}
-        children={() => <HomeContent user={user} flowers={flowers} />}
+        children={() => (
+          <HomeContent
+            user={user}
+            flowers={flowers}
+            navigation={props.navigation}
+          />
+        )}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({color}) => (
@@ -67,22 +72,8 @@ function Home(props) {
 function HomeContent(props) {
   const user = props.user;
   const flowers = props.flowers;
-  console.log(flowers.length);
-  // const [flowers, setFlowers] = useState([]);
+  const navigation = props.navigation;
 
-  // useEffect(() => {
-  //   // get flowers
-  //   const starCountRef = firebase.database().ref('flowers/');
-  //   starCountRef.on('value', snapshot => {
-  //     const data = snapshot.val();
-  //     const productArray = [];
-  //     Object.keys(data).map(i => {
-  //       return productArray.push({id: i, ...data[i]});
-  //     });
-  //     setFlowers(productArray);
-  //     // setFlowers(Object.entries(data).map(([key, value]) => ({key, value})));
-  //   });
-  // }, []);
   if (flowers.length === 0) {
     return (
       <View>
@@ -94,10 +85,7 @@ function HomeContent(props) {
   return (
     <ScrollView style={{flex: 1}}>
       <HeaderUser image={user.imageBase64} />
-      {/* <Card image={i.image} flower={i.name} price={i.price} id={i.id} /> */}
-      {console.log('===========')}
       {flowers.map((i, index, elements) => {
-        console.log(index % 2 === 0);
         if (index % 2 === 0) {
           if (elements[index + 1] !== undefined) {
             return (
@@ -107,6 +95,7 @@ function HomeContent(props) {
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  navigation={navigation}
                 />
                 <Card
                   image={elements[index + 1].image}
@@ -124,6 +113,7 @@ function HomeContent(props) {
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  navigation={navigation}
                   height={500}
                 />
               </View>
@@ -131,7 +121,6 @@ function HomeContent(props) {
           }
         }
       })}
-      {/* <Card /> */}
     </ScrollView>
   );
 }

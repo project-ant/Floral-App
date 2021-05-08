@@ -7,15 +7,26 @@ function Card(props) {
     console.log(e);
   };
 
+  const handleImageClick = () => {
+    props.navigation.navigate('FlowerDetail');
+  };
+
   return (
     <View style={styles.container(height)}>
-      <Image
-        source={{uri: props.image}}
+      <TouchableOpacity
+        onPress={handleImageClick}
         style={{borderRadius: 1, width: '99.5%', height: '75%'}}
-      />
-      <Text style={{fontFamily: 'Poppins-Medium', fontSize: 17}}>
-        {props.flower}
-      </Text>
+        activeOpacity={0.8}>
+        <Image
+          source={{uri: props.image}}
+          style={{width: '100%', height: '100%'}}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleImageClick}>
+        <Text style={{fontFamily: 'Poppins-Medium', fontSize: 17}}>
+          {props.flower}
+        </Text>
+      </TouchableOpacity>
       <Text style={{fontFamily: 'Poppins-Medium', fontSize: 15}}>
         {`Rp. ${props.price}`}
       </Text>
