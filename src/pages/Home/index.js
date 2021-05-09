@@ -35,7 +35,7 @@ function Home(props) {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeContent"
       activeColor="#e91e63"
       barStyle={{backgroundColor: '#FFC700'}}>
       <Tab.Screen
@@ -89,7 +89,7 @@ function HomeContent(props) {
         if (index % 2 === 0) {
           if (elements[index + 1] !== undefined) {
             return (
-              <View style={styles.contentWrapper}>
+              <View style={styles.contentWrapper} keys={index}>
                 <Card
                   image={i.image}
                   flower={i.name}
@@ -102,12 +102,13 @@ function HomeContent(props) {
                   flower={elements[index + 1].name}
                   price={elements[index + 1].price}
                   id={elements[index + 1].id}
+                  navigation={navigation}
                 />
               </View>
             );
           } else {
             return (
-              <View style={styles.contentWrapper}>
+              <View style={styles.contentWrapper} keys={index}>
                 <Card
                   image={i.image}
                   flower={i.name}

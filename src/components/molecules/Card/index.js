@@ -11,6 +11,8 @@ function Card(props) {
     props.navigation.navigate('FlowerDetail');
   };
 
+  console.log(props.navigation);
+
   return (
     <View style={styles.container(height)}>
       <TouchableOpacity

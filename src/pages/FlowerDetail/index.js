@@ -1,12 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import {HeaderUser} from '../../components/molecules';
+import {HeaderUser, Header} from '../../components/molecules';
+import Buy from '../Buy';
 
-function FlowerDetail() {
+const Tab = createMaterialBottomTabNavigator();
+
+function FlowerDetail(props) {
   return (
     <View>
-      <HeaderUser />
+      <Header
+        label="Floral-App"
+        bgColor="#FFC700"
+        miniText="Choose your flower"
+        onBack={() => props.navigation.goBack()}
+      />
 
       <Text>Dummy Buy Flower Detail</Text>
     </View>
