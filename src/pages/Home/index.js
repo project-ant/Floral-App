@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Text, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import {HeaderUser, Card} from '../../components/molecules';
@@ -35,7 +42,7 @@ function Home(props) {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeContent"
       activeColor="#e91e63"
       barStyle={{backgroundColor: '#FFC700'}}>
       <Tab.Screen
@@ -77,7 +84,9 @@ function HomeContent(props) {
   if (flowers.length === 0) {
     return (
       <View>
-        <Text>Loading</Text>
+        <HeaderUser image={user.imageBase64} />
+
+        <ActivityIndicator size="large" color="black" style={{marginTop: 20}} />
       </View>
     );
   }
@@ -89,12 +98,13 @@ function HomeContent(props) {
         if (index % 2 === 0) {
           if (elements[index + 1] !== undefined) {
             return (
-              <View style={styles.contentWrapper}>
+              <View style={styles.contentWrapper} keys={index}>
                 <Card
                   image={i.image}
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  data={i}
                   navigation={navigation}
                 />
                 <Card
@@ -102,17 +112,20 @@ function HomeContent(props) {
                   flower={elements[index + 1].name}
                   price={elements[index + 1].price}
                   id={elements[index + 1].id}
+                  data={elements[index + 1]}
+                  navigation={navigation}
                 />
               </View>
             );
           } else {
             return (
-              <View style={styles.contentWrapper}>
+              <View style={styles.contentWrapper} keys={index}>
                 <Card
                   image={i.image}
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  data={i}
                   navigation={navigation}
                   height={500}
                 />
