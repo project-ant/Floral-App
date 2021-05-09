@@ -4,7 +4,7 @@ import {RadioButton} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
 
 import {Header} from '../../components/molecules';
-import {Gap, Hr} from '../../components/atoms';
+import {Gap, Hr, Button} from '../../components/atoms';
 import firebase from '../../config/Firebase';
 
 function Basket(props) {
@@ -50,6 +50,10 @@ function Basket(props) {
     getData();
   }, [isFocused]);
 
+  const handleCheckout = () => {
+    console.log('handle checkout');
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Header
@@ -65,9 +69,9 @@ function Basket(props) {
         <Text style={{fontFamily: 'Poppins-Medium', fontSize: 20}}>Basket</Text>
         <Hr />
 
-        {flowers.map(i => {
+        {flowers.map((i, index) => {
           return (
-            <View>
+            <View keys={index}>
               <Gap height={2} />
               <TestCard
                 name={i.name}
@@ -77,12 +81,16 @@ function Basket(props) {
                 userId={props.userId}
                 navigation={props.navigation}
                 data={i}
+                id={i.id}
               />
               <Gap height={2} />
               <Hr />
             </View>
           );
         })}
+
+        <Gap height={10} />
+        <Button text="Checkout" onPress={handleCheckout} />
       </View>
     </ScrollView>
   );
@@ -90,6 +98,26 @@ function Basket(props) {
 
 function TestCard(props) {
   const [checked, setChecked] = React.useState(false);
+  const [buy, setBuy] = useState([]);
+
+  // FIX ME
+  const handleRadioButton = e => {
+    // const temp = buy;
+    // if (!checked) {
+    //   console.log('ditambahkan');
+    //   temp.push(props.id);
+    // } else {
+    //   console.log('dihapus');
+    //   const index = temp.indexOf(props.id);
+    //   if (index > -1) {
+    //     temp.splice(index, 1);
+    //   }
+    // }
+    // setChecked(!checked);
+    // // console.log(temp);
+    // // setBuy(temp);
+    // console.log(temp);
+  };
 
   return (
     <View
@@ -108,7 +136,7 @@ function TestCard(props) {
         }}>
         <RadioButton
           status={checked ? 'checked' : 'unchecked'}
-          onPress={() => setChecked(!checked)}
+          onPress={() => handleRadioButton(props.data)}
         />
       </View>
       <View
