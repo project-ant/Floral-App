@@ -10,7 +10,7 @@ const SignUp = ({navigation}) => {
         <View style={styles.page}>
             <Header label="Sign In"
                 bgColor='#FFC700'/>
-            <Gap height={25}/>
+            <Gap height={25}/> 
             <View style={styles.signInCard}>
                 <LabeledInput   value={email}
                                 setValue={setEmail}
