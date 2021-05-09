@@ -44,7 +44,6 @@ function FlowerDetail(props) {
       ...data,
       count: flowerCount,
     };
-    console.log(userId, data.id);
     firebase
       .database()
       .ref('users/' + userId + '/basket/' + data.id)

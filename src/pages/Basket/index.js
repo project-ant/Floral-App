@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, Image, ScrollView} from 'react-native';
+import {Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
 
@@ -73,7 +73,10 @@ function Basket(props) {
                 name={i.name}
                 image={i.image}
                 price={i.price}
-                count={i.price}
+                count={i.count}
+                userId={props.userId}
+                navigation={props.navigation}
+                data={i}
               />
               <Gap height={2} />
               <Hr />
@@ -116,10 +119,20 @@ function TestCard(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Image
-          source={{uri: props.image}}
-          style={{borderRadius: 5, width: '97%', height: '97%'}}
-        />
+        <TouchableOpacity
+          style={{width: '97%', height: '97%'}}
+          onPress={() => {
+            props.navigation.navigate('FlowerDetail', {
+              userId: props.userId,
+              data: props.data,
+            });
+          }}
+          activeOpacity={0.8}>
+          <Image
+            source={{uri: props.image}}
+            style={{borderRadius: 5, width: '100%', height: '100%'}}
+          />
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -149,7 +162,9 @@ function TestCard(props) {
             justifyContent: 'center',
             // alignItems: 'center',
           }}>
-          <Text>Quantity: {props.count}</Text>
+          <Text>{`Quantity: ${props.count} Total: ${
+            props.count * props.price
+          }`}</Text>
         </View>
       </View>
     </View>
