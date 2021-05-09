@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Text, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import {HeaderUser, Card} from '../../components/molecules';
@@ -77,7 +84,9 @@ function HomeContent(props) {
   if (flowers.length === 0) {
     return (
       <View>
-        <Text>Loading</Text>
+        <HeaderUser image={user.imageBase64} />
+
+        <ActivityIndicator size="large" color="black" style={{marginTop: 20}} />
       </View>
     );
   }
