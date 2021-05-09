@@ -1,3 +1,5 @@
-import Header from "./Header";
+import Header from './Header';
+import HeaderUser from './HeaderUser';
+import Card from './Card';
 
-export { Header };
+export {Header, HeaderUser, Card};

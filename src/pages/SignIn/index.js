@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
+import {View, ScrollView, StyleSheet, ActivityIndicator} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 
 import {Button, Gap, TextInput} from '../../components/atoms';
@@ -26,9 +20,8 @@ const SignIn = ({navigation}) => {
       .signInWithEmailAndPassword(email, password)
       .then(userCredential => {
         const user = userCredential.user;
-        console.log(user.uid);
+        navigation.replace('Home', {id: user.uid});
         setIsLoading(false);
-        navigation.replace('Home');
       })
       .catch(error => {
         // const errorCode = error.code;
@@ -65,7 +58,10 @@ const SignIn = ({navigation}) => {
         <Gap height={24} />
         {isLoading && (
           <Button
-            text=<Button text="Sign In" onPress={loginHandler} />
+            text=<Button
+              text={<ActivityIndicator size="large" color="black" />}
+              onPress={loginHandler}
+            />
             onPress={loginHandler}
           />
         )}
