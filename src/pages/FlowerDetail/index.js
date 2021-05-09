@@ -1,15 +1,68 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {showMessage} from 'react-native-flash-message';
 
-import {HeaderUser, Header} from '../../components/molecules';
+import {Header} from '../../components/molecules';
 import {Gap, Button} from '../../components/atoms';
-import Buy from '../Buy';
+import firebase from '../../config/Firebase';
 
 const Tab = createMaterialBottomTabNavigator();
 
 function FlowerDetail(props) {
-  const {data} = props.route.params;
+  const {data, userId} = props.route.params;
+
+  const [flowerCount, setFlowerCount] = useState(1);
+
+  useEffect(() => {
+    const dbRef = firebase
+      .database()
+      .ref('users/' + userId + '/basket/' + data.id)
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const response = snapshot.val();
+          setFlowerCount(response.count);
+        } else {
+          console.log('No data available');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handlePutInBasket = () => {
+    const basketData = {
+      ...data,
+      count: flowerCount,
+    };
+    console.log(userId, data.id);
+    firebase
+      .database()
+      .ref('users/' + userId + '/basket/' + data.id)
+      .update(basketData)
+      .then(() => {
+        showMessage({
+          message: 'Data berhasil diupdate',
+          type: 'success',
+        });
+      })
+      .catch(() => {
+        showMessage({
+          message: 'Gagal',
+          description: 'Silahkan coba lagi',
+          type: 'warning',
+        });
+      });
+  };
 
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
@@ -29,14 +82,58 @@ function FlowerDetail(props) {
 
         <View
           style={{
+            flexDirection: 'row',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View style={{width: '10%'}}>
+            <Button
+              color="grey"
+              text="-"
+              textColor="white"
+              onPress={() => setFlowerCount(parseInt(flowerCount) - 1)}
+            />
+          </View>
+          <Gap width={2} />
+          <View style={{width: '10%'}}>
+            <TextInput
+              style={{
+                backgroundColor: 'white',
+                borderWidth: 2,
+                borderColor: 'black',
+                height: 45,
+                borderRadius: 5,
+              }}
+              textAlign="center"
+              value={flowerCount.toString()}
+              onChangeText={e => setFlowerCount(e)}
+            />
+          </View>
+          <Gap width={2.3} />
+          <View style={{width: '10%'}}>
+            <Button
+              color="grey"
+              text="+"
+              textColor="white"
+              onPress={() => setFlowerCount(parseInt(flowerCount) + 1)}
+            />
+          </View>
+        </View>
+
+        <Gap height={7} />
+
+        <View
+          style={{
             width: '100%',
             paddingHorizontal: 20,
           }}>
-          <Button text="Put in basket" />
+          <Button text="Put in basket" onPress={handlePutInBasket} />
           <Gap height={7} />
           <Button text="Buy" />
         </View>
       </View>
+      <Gap height={10} />
     </ScrollView>
   );
 }

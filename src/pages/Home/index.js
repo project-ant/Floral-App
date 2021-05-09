@@ -53,6 +53,7 @@ function Home(props) {
             user={user}
             flowers={flowers}
             navigation={props.navigation}
+            userId={id}
           />
         )}
         options={{
@@ -106,6 +107,7 @@ function HomeContent(props) {
                   id={i.id}
                   data={i}
                   navigation={navigation}
+                  userId={props.userId}
                 />
                 <Card
                   image={elements[index + 1].image}
@@ -114,6 +116,7 @@ function HomeContent(props) {
                   id={elements[index + 1].id}
                   data={elements[index + 1]}
                   navigation={navigation}
+                  userId={props.userId}
                 />
               </View>
             );
@@ -126,6 +129,7 @@ function HomeContent(props) {
                   price={i.price}
                   id={i.id}
                   data={i}
+                  userId={props.userId}
                   navigation={navigation}
                   height={500}
                 />
