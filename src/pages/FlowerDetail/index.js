@@ -50,10 +50,17 @@ function FlowerDetail(props) {
       .ref('users/' + userId + '/basket/' + data.id)
       .update(basketData)
       .then(() => {
-        showMessage({
-          message: 'Data berhasil diupdate',
-          type: 'success',
-        });
+        if (flowerCount === 0) {
+          showMessage({
+            message: 'Data berhasil dikosongkan',
+            type: 'success',
+          });
+        } else {
+          showMessage({
+            message: 'Data berhasil diupdate',
+            type: 'success',
+          });
+        }
       })
       .catch(() => {
         showMessage({
