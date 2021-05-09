@@ -95,6 +95,7 @@ function HomeContent(props) {
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  data={i}
                   navigation={navigation}
                 />
                 <Card
@@ -102,6 +103,7 @@ function HomeContent(props) {
                   flower={elements[index + 1].name}
                   price={elements[index + 1].price}
                   id={elements[index + 1].id}
+                  data={elements[index + 1]}
                   navigation={navigation}
                 />
               </View>
@@ -114,6 +116,7 @@ function HomeContent(props) {
                   flower={i.name}
                   price={i.price}
                   id={i.id}
+                  data={i}
                   navigation={navigation}
                   height={500}
                 />

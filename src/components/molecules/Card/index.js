@@ -8,10 +8,8 @@ function Card(props) {
   };
 
   const handleImageClick = () => {
-    props.navigation.navigate('FlowerDetail');
+    props.navigation.navigate('FlowerDetail', {data: props.data});
   };
-
-  console.log(props.navigation);
 
   return (
     <View style={styles.container(height)}>
