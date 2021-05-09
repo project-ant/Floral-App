@@ -2,7 +2,14 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {SplashScreen, SignIn, SignUp, Home, FlowerDetail} from '../pages';
+import {
+  SplashScreen,
+  SignIn,
+  SignUp,
+  Home,
+  FlowerDetail,
+  Basket,
+} from '../pages';
 
 export default function Router() {
   const Stack = createStackNavigator();
@@ -32,6 +39,11 @@ export default function Router() {
       <Stack.Screen
         name="FlowerDetail"
         component={FlowerDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Basket"
+        component={Basket}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
