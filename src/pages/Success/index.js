@@ -13,7 +13,7 @@ export default function Success({ navigation }) {
       <Text style={styles.text}>Purchase Successful</Text>
       <Image
         style={styles.image}
-        source={require("../../assets/icons/Logo.png")}
+        source={require("../../assets/icons/image_1.svg")}
       />
     </View>
   );
