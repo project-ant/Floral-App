@@ -1,16 +1,14 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDpmGGbZvkncCkutw3CxQfVdb4SLV20pkw",
-  authDomain: "floral-app-f471a.firebaseapp.com",
-  databaseURL: "https://floral-app-f471a-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "floral-app-f471a",
-  storageBucket: "floral-app-f471a.appspot.com",
-  messagingSenderId: "23457594764",
-  appId: "1:23457594764:web:dc41f10f1c681944c0eaa9",
-  measurementId: "G-NWVXSRKRL6"
+  apiKey: "AIzaSyAIpClY4rdabCXAcan2ANKaimIVFaIHbkM",
+  authDomain: "floral-app-2-40076.firebaseapp.com",
+  databaseURL: "https://floral-app-2-40076-default-rtdb.firebaseio.com",
+  projectId: "floral-app-2-40076",
+  storageBucket: "floral-app-2-40076.appspot.com",
+  messagingSenderId: "281123390847",
+  appId: "1:281123390847:web:ceb687af2801938d61464a",
 };
-
 
 firebase.initializeApp(firebaseConfig);
 
