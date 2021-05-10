@@ -17,7 +17,9 @@ function Header(props) {
       )}
       <View>
         <Text style={styles.text}>{props.label}</Text>
-        <Text style={styles.miniText}>{props.miniText}</Text>
+        {props.miniText && (
+          <Text style={styles.miniText}>{props.miniText}</Text>
+        )}
       </View>
     </View>
   );
