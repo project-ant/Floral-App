@@ -1,12 +1,4 @@
 {
-  "name": "Floral-App",
-  "displayName": "Floral-App",
-  "expo": {
-    "name": "Floral-App",
-    "slug": "Floral-App",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  }
+  "name": "FloralApp",
+  "displayName": "FloralApp"
 }

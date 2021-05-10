@@ -1,46 +1,45 @@
-import React, { useState } from 'react'
-import { TextInput as Input, StyleSheet} from 'react-native'
+import React, { useState } from "react";
+import { TextInput as Input, StyleSheet, Text, View } from "react-native";
 
-const TextInput = ({placeholder, value, setValue, validation, filter, isPassword}) => {
-    const [isValid, setIsValid] = useState('')
-    const [borderColor, setBorderColor] = useState('black')
+function TextInput({
+  placeholder,
+  value,
+  onChangeText,
+  secureTextEntry,
+  label,
+}) {
+  const [borderColor, setBorderColor] = useState("black");
 
-    const onChangeHandler = ({nativeEvent: {text: e}}) => {
-        if(validation == undefined) validation = e => ''
-        if(filter == undefined) filter = e => e
-        
-        setIsValid(validation(e))
-        isValid ? setBorderColor('red') : setBorderColor('green')
-        const filteredText = filter(e)
-        setValue(filteredText)
-    }
-
-    const textInputStyles = {
-        ...styles.inputField,
-        borderColor: borderColor
-    }
-
-    return (
-        <Input  style={textInputStyles}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChangeHandler}
-                secureTextEntry={isPassword}
-                onFocus={e => isValid ? setBorderColor('red') : setBorderColor('green')}
-                onBlur={e => isValid ? setBorderColor('red') : setBorderColor('black')}
-        />
-    )
+  return (
+    <View>
+      <Text style={styles.label}>{label}</Text>
+      <Input
+        style={styles.inputField}
+        placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    inputField: {
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        fontFamily: "Poppins-Regular",
-        fontSize: 14
-    }
-})
+  inputField: {
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontFamily: "Poppins-Regular",
+    fontSize: 14,
+  },
+  label: {
+    fontFamily: "Poppins-Medium",
+    fontWeight: "400",
+    fontSize: 16,
+    color: "#020202",
+    marginBottom: 6,
+  },
+});
 
-export default TextInput
+export default TextInput;
