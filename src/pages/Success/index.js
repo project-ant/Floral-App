@@ -1,16 +1,39 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
 
-import {HeaderUser} from '../../components/molecules';
+export default function Success({ navigation }) {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace("Home");
+    }, 3000);
+  }, []);
 
-function Success() {
   return (
-    <View>
-      <HeaderUser />
-
-      <Text>Dummy Success Page</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Purchase Successful</Text>
+      <Image
+        style={styles.image}
+        source={require("../../assets/icons/Logo.png")}
+      />
     </View>
   );
 }
 
-export default Success;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#FFC700",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 150,
+    height: 300,
+  },
+  text: {
+    fontSize: 32,
+    color: "#020202",
+    fontWeight: "500",
+    fontFamily: "Poppins-Medium",
+  },
+});
