@@ -94,7 +94,7 @@ function Basket(props) {
         })}
 
         <Gap height={10} />
-        <Button text="Checkout" onPress={handleCheckout} />
+        <Button text="Checkout" onPress={handleCheckout, () => props.navigation.navigate('Buy')} />
       </View>
     </ScrollView>
   );

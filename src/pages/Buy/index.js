@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, TextInput, ActivityIndicator} from 'react-native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import { Header} from '../../components/molecules';
@@ -17,6 +17,8 @@ function Buy(props) {
         onBack={() => props.navigation.goBack()}
       />
       <Text>Dummy Buy Page</Text>
+
+     
     </View>
   );
 }

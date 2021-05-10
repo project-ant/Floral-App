@@ -71,6 +71,8 @@ function FlowerDetail(props) {
   };
 
   return (
+    
+
     <ScrollView style={{backgroundColor: 'white'}}>
       <Header
         label="Floral-App"
@@ -141,6 +143,7 @@ function FlowerDetail(props) {
       </View>
       <Gap height={10} />
     </ScrollView>
+    
   );
 }
 
