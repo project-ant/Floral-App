@@ -3,12 +3,16 @@ import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 function Card(props) {
   const height = props.height ? props.height : 257;
+
   const handleClick = e => {
     console.log(e);
   };
 
   const handleImageClick = () => {
-    props.navigation.navigate('FlowerDetail', {data: props.data});
+    props.navigation.navigate('FlowerDetail', {
+      data: props.data,
+      userId: props.userId,
+    });
   };
 
   return (

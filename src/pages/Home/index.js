@@ -10,7 +10,7 @@ import {
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import {HeaderUser, Card} from '../../components/molecules';
-import {Buy} from '../../pages';
+import {Basket} from '../../pages';
 import firebase from '../../config/Firebase';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -53,6 +53,7 @@ function Home(props) {
             user={user}
             flowers={flowers}
             navigation={props.navigation}
+            userId={id}
           />
         )}
         options={{
@@ -63,8 +64,9 @@ function Home(props) {
         }}
       />
       <Tab.Screen
-        name="Buy"
-        component={Buy}
+        name="Basket"
+        // component={Basket}
+        children={() => <Basket userId={id} navigation={props.navigation} />}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({color}) => (
@@ -106,6 +108,7 @@ function HomeContent(props) {
                   id={i.id}
                   data={i}
                   navigation={navigation}
+                  userId={props.userId}
                 />
                 <Card
                   image={elements[index + 1].image}
@@ -114,6 +117,7 @@ function HomeContent(props) {
                   id={elements[index + 1].id}
                   data={elements[index + 1]}
                   navigation={navigation}
+                  userId={props.userId}
                 />
               </View>
             );
@@ -126,6 +130,7 @@ function HomeContent(props) {
                   price={i.price}
                   id={i.id}
                   data={i}
+                  userId={props.userId}
                   navigation={navigation}
                   height={500}
                 />
