@@ -10,6 +10,7 @@ import firebase from '../../config/Firebase';
 function Basket(props) {
   const isFocused = useIsFocused();
   const [flowers, setFlowers] = useState([]);
+  const [buy, setBuy] = useState([]);
 
   const getData = () => {
     // get all flower from current user baset
@@ -52,6 +53,7 @@ function Basket(props) {
 
   const handleCheckout = () => {
     console.log('handle checkout');
+    console.log(buy);
   };
 
   return (
@@ -82,6 +84,8 @@ function Basket(props) {
                 navigation={props.navigation}
                 data={i}
                 id={i.id}
+                buy={buy}
+                setBuy={setBuy}
               />
               <Gap height={2} />
               <Hr />
@@ -98,25 +102,21 @@ function Basket(props) {
 
 function TestCard(props) {
   const [checked, setChecked] = React.useState(false);
-  const [buy, setBuy] = useState([]);
 
   // FIX ME
   const handleRadioButton = e => {
-    // const temp = buy;
-    // if (!checked) {
-    //   console.log('ditambahkan');
-    //   temp.push(props.id);
-    // } else {
-    //   console.log('dihapus');
-    //   const index = temp.indexOf(props.id);
-    //   if (index > -1) {
-    //     temp.splice(index, 1);
-    //   }
-    // }
-    // setChecked(!checked);
-    // // console.log(temp);
-    // // setBuy(temp);
-    // console.log(temp);
+    const temp = props.buy;
+    setChecked(!checked);
+
+    if (!checked) {
+      temp.push(props.id);
+    } else {
+      const index = temp.indexOf(props.id);
+      if (index > -1) {
+        temp.splice(index, 1);
+      }
+    }
+    props.setBuy(temp);
   };
 
   return (
