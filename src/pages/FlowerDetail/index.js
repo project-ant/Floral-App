@@ -34,7 +34,7 @@ function FlowerDetail(props) {
           }}>
           <Button text="Put in basket" />
           <Gap height={7} />
-          <Button text="Buy" />
+          <Button text="Buy" onPress={() => props.navigation.navigate('Buy')}/>
         </View>
       </View>
     </ScrollView>
