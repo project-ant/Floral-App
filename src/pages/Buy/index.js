@@ -73,7 +73,8 @@ function Buy(props) {
           </Text>
         </View>
         <Gap height={10} />
-        <Button text="Buy" />
+        <Button text="Buy"
+          onPress={() => props.navigation.navigate('Success')} />
         <Gap height={15} />
       </View>
     </ScrollView>
