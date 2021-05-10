@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 export default function Success({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace("Home");
+      navigation.navigate('Home');
     }, 3000);
   }, []);
 
@@ -13,7 +13,7 @@ export default function Success({ navigation }) {
       <Text style={styles.text}>Purchase Successful</Text>
       <Image
         style={styles.image}
-        source={require("../../assets/icons/image_1.svg")}
+        source={require("../../assets/icons/Logo.png")}
       />
     </View>
   );
