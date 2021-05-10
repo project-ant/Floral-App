@@ -52,8 +52,7 @@ function Basket(props) {
   }, [isFocused]);
 
   const handleCheckout = () => {
-    console.log('handle checkout');
-    console.log(buy);
+    props.navigation.navigate('Buy', {flower: buy, userId: props.userId});
   };
 
   return (
@@ -94,7 +93,7 @@ function Basket(props) {
         })}
 
         <Gap height={10} />
-        <Button text="Checkout" onPress={handleCheckout, () => props.navigation.navigate('Buy')} />
+        <Button text="Checkout" onPress={handleCheckout} />
       </View>
     </ScrollView>
   );
