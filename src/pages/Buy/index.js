@@ -9,7 +9,6 @@ import firebase from '../../config/Firebase';
 
 function Buy(props) {
   const {flower, userId} = props.route.params;
-
   const isFocused = useIsFocused();
   const [flowers, setFlowers] = useState([]);
   const [total, setTotal] = useState(0);

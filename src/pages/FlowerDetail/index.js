@@ -70,9 +70,12 @@ function FlowerDetail(props) {
       });
   };
 
-  return (
-    
+  const handleBuy = () => {
+    // console.log(userId, [data]);
+    props.navigation.navigate('Buy', {flower: [data.id], userId: userId});
+  };
 
+  return (
     <ScrollView style={{backgroundColor: 'white'}}>
       <Header
         label="Floral-App"
@@ -138,12 +141,11 @@ function FlowerDetail(props) {
           }}>
           <Button text="Put in basket" onPress={handlePutInBasket} />
           <Gap height={7} />
-          <Button text="Buy" onPress={() => props.navigation.navigate('Buy')}/>
+          <Button text="Buy" onPress={handleBuy} />
         </View>
       </View>
       <Gap height={10} />
     </ScrollView>
-    
   );
 }
 
